@@ -30,7 +30,59 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  dice = dice.sort
+  points = 0
+  points += fives(dice)
+  points += ones(dice)
+  points += triples(dice)
+  points
+end
+
+def fives(dice)
+  score = 0
+  dice.each do |i|
+  if  i == 5
+    score += 50
+    if score == 150
+      score += 350
+  end
+end
+end
+  score
+end
+
+def ones(dice)
+  score = 0
+  dice.each do |i|
+    if i == 1
+    score += 100
+    if score == 300
+      score = 1000
+    end
+  end
+end
+  score
+end
+
+def triples(dice)
+  score = 0
+  dice_two = dice.select {|num| num == 2}
+  if dice_two.size == 3
+    score = 200
+  end
+  dice_three = dice.select {|num| num == 3}
+  if dice_three.size == 3
+    score = 300
+  end
+  dice_four = dice.select {|num| num == 4}
+  if dice_four.size == 3
+    score = 400
+  end
+  dice_six = dice.select {|num| num == 6}
+  if dice_six.size == 3
+    score = 600
+  end
+  score
 end
 
 class AboutScoringProject < Neo::Koan
